@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    guess = "";
+    code = 0;
+        function initialize()
+        {
+            generateNumber();
+            guess = "";
+        }
+        function generateNumber()
+        {
+            digit1 = parseInt((Math.random()*3)+1);
+            digit2 = parseInt((Math.random()*3)+1);
+            digit3 = parseInt((Math.random()*3)+1);
+            codeStr = digit1 + "" + digit2 + "" + digit3;
+            console.log(codeStr);
+            code = parseInt(codeStr);
+            console.log(code);
+            guessOutput = document.getElementById("guess");
+        }
+        function addOne()
+        {
+            console.log(guess.length);
+            if(guess.length = 2)
+            {
+                guess += "1";
+                compare();
+            }
+            else{
+                guess += "1";
+            }
+            display();
+        }
+        function addTwo()
+        {
+            if(guess.length = 2)
+            {
+                guess += "2";
+                compare();
+            }
+            else{
+                guess += "2";
+            }
+            display();
+        }
+        function addThree()
+        {
+            if(guess.length = 2)
+            {
+                guess += "3";
+                compare();
+            }
+            else{
+                guess += "3";
+            }
+            display();
+        }
+        function compare()
+        {
+            guessnum = parseInt(guess);
+            console.log(guessnum);
+            if (guessnum = code)
+            {
+                console.log("match");
+            }
+            else if(guessnum < code)
+            {
+                console.log("too low");
+            }
+            else{
+                console.log("too high");
+            }
+        }
+        function display()
+        {
+            guessOutput.innerHTML = guess;
+        }
+            </script>
+</head>
+<body onload = initialize()>
+
+    <button onclick = "addOne();">1</button>
+    <button onclick = "addTwo();">2</button>
+    <button onclick = "addThree();">3</button>
+    Your Guess: <span id = "guess">0</span>
+</body>
+</html>
