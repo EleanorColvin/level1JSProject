@@ -8,10 +8,12 @@
     <script>
     guess = "";
     code = 0;
+    clock = 7;
         function initialize()
         {
             generateNumber();
             guess = "";
+            clock = 7;
         }
         function generateNumber()
         {
@@ -19,15 +21,14 @@
             digit2 = parseInt((Math.random()*3)+1);
             digit3 = parseInt((Math.random()*3)+1);
             codeStr = digit1 + "" + digit2 + "" + digit3;
-            console.log(codeStr);
             code = parseInt(codeStr);
-            console.log(code);
             guessOutput = document.getElementById("guess");
+            clockOutput = document.getElementById("clock");
+            display();
         }
         function addOne()
         {
-            console.log(guess.length);
-            if(guess.length = 2)
+            if(guess.length == 2)
             {
                 guess += "1";
                 compare();
@@ -39,19 +40,19 @@
         }
         function addTwo()
         {
-            if(guess.length = 2)
+            if(guess.length == 2)
             {
-                guess += "2";
-                compare();
+                guess += "2"; 
+                compare(); 
             }
             else{
-                guess += "2";
+                guess += "2"; 
             }
             display();
         }
         function addThree()
         {
-            if(guess.length = 2)
+            if(guess.length == 2)
             {
                 guess += "3";
                 compare();
@@ -65,29 +66,47 @@
         {
             guessnum = parseInt(guess);
             console.log(guessnum);
-            if (guessnum = code)
+            if (guessnum == code)
             {
                 console.log("match");
+                console.log("You cracked the code!");
+                initialize();
             }
             else if(guessnum < code)
             {
                 console.log("too low");
+                clock -= 1;
             }
             else{
                 console.log("too high");
+                clock -= 1;
             }
+            guess = "";
+            if (clock == 0)
+            {
+                console.log("You got caught! Mission failed, you couldn't crack the code ):");
+                initialize();
+            }
+        }
+        function clearGuess()
+        {
+            guess = "";
+            display();
         }
         function display()
         {
             guessOutput.innerHTML = guess;
+            clockOutput.innerHTML = clock;
         }
-            </script>
+    </script>
 </head>
 <body onload = initialize()>
-
     <button onclick = "addOne();">1</button>
     <button onclick = "addTwo();">2</button>
     <button onclick = "addThree();">3</button>
-    Your Guess: <span id = "guess">0</span>
+    <button onclick = "clearGuess();">clear</button><br>
+    Your Guess: <span id = "guess">0</span><br>
+    Clock: <span id = "clock">7</span>
+
 </body>
 </html>
